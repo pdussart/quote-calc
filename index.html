@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influencer Pricing Calculator - Graphic Design Campaigns</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Influencer Pricing Calculator</h1>
+            <p class="header__subtitle">Generate accurate quotes for graphic design campaign collaborations</p>
+        </header>
+
+        <div class="calculator-layout">
+            <!-- Main Calculator Panel -->
+            <div class="calculator-panel">
+                <div class="section">
+                    <h2 class="section__title">Core Parameters</h2>
+                    
+                    <!-- Campaign Presets -->
+                    <div class="form-group">
+                        <label class="form-label" for="preset">Quick Start Presets</label>
+                        <select id="preset" class="form-control">
+                            <option value="">Select a preset...</option>
+                            <option value="standard-ig-post">Standard Instagram Post</option>
+                            <option value="video-campaign">Video Campaign</option>
+                            <option value="multi-platform">Multi-Platform Campaign</option>
+                        </select>
+                    </div>
+
+                    <!-- Follower Count -->
+                    <div class="form-group">
+                        <label class="form-label" for="followerTier">
+                            Follower Count Tier
+                            <span class="tooltip" data-tooltip="Different tiers have varying base rates and audience characteristics">ℹ</span>
+                        </label>
+                        <select id="followerTier" class="form-control">
+                            <option value="Nano (1K-10K)">Nano (1K-10K) - High engagement, niche audiences</option>
+                            <option value="Micro (10K-100K)" selected>Micro (10K-100K) - Balanced reach and engagement</option>
+                            <option value="Mid-tier (100K-500K)">Mid-tier (100K-500K) - Significant reach with good engagement</option>
+                            <option value="Macro (500K-1M)">Macro (500K-1M) - Large reach, celebrity-level influence</option>
+                            <option value="Mega (1M+)">Mega (1M+) - Celebrity status, massive reach</option>
+                        </select>
+                        <div class="form-group mt-8">
+                            <label class="form-label" for="exactFollowers">Exact Follower Count</label>
+                            <input type="number" id="exactFollowers" class="form-control" placeholder="e.g., 50000" min="1000" max="10000000">
+                        </div>
+                    </div>
+
+                    <!-- Platform -->
+                    <div class="form-group">
+                        <label class="form-label" for="platform">Platform</label>
+                        <select id="platform" class="form-control">
+                            <option value="Instagram" selected>Instagram ($10/1K followers)</option>
+                            <option value="TikTok">TikTok ($12/1K followers)</option>
+                            <option value="YouTube">YouTube ($15/1K followers)</option>
+                            <option value="LinkedIn">LinkedIn ($25/1K followers)</option>
+                            <option value="Facebook">Facebook ($8/1K followers)</option>
+                            <option value="Twitter">Twitter ($8/1K followers)</option>
+                        </select>
+                    </div>
+
+                    <!-- Content Type -->
+                    <div class="form-group">
+                        <label class="form-label" for="contentType">Content Type</label>
+                        <select id="contentType" class="form-control">
+                            <option value="Story">Story (0.7x multiplier)</option>
+                            <option value="Static Post" selected>Static Post (1.0x multiplier)</option>
+                            <option value="Carousel">Carousel (1.1x multiplier)</option>
+                            <option value="Reel">Reel (1.2x multiplier)</option>
+                            <option value="Video">Video (1.5x multiplier)</option>
+                            <option value="Multi-Post Campaign">Multi-Post Campaign (2.5x multiplier)</option>
+                        </select>
+                    </div>
+
+                    <!-- Engagement Rate -->
+                    <div class="form-group">
+                        <label class="form-label" for="engagement">
+                            Engagement Rate: <span id="engagementValue">4-7%</span>
+                        </label>
+                        <input type="range" id="engagement" class="slider" min="1" max="5" value="3" step="1">
+                        <div class="slider-labels">
+                            <span>1-2%</span>
+                            <span>2-4%</span>
+                            <span>4-7%</span>
+                            <span>7-10%</span>
+                            <span>10%+</span>
+                        </div>
+                    </div>
+
+                    <!-- Industry -->
+                    <div class="form-group">
+                        <label class="form-label" for="industry">Industry Niche</label>
+                        <select id="industry" class="form-control">
+                            <option value="General/Lifestyle">General/Lifestyle (1.0x)</option>
+                            <option value="Graphic Design" selected>Graphic Design (1.4x)</option>
+                            <option value="Tech">Tech (1.5x)</option>
+                            <option value="Beauty">Beauty (1.3x)</option>
+                            <option value="Fashion">Fashion (1.2x)</option>
+                            <option value="Food">Food (1.1x)</option>
+                            <option value="Travel">Travel (1.4x)</option>
+                            <option value="Fitness">Fitness (1.2x)</option>
+                        </select>
+                    </div>
+
+                    <!-- Usage Rights -->
+                    <div class="form-group">
+                        <label class="form-label">Usage Rights</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="usageRights" value="None">
+                                <span class="radio-custom"></span>
+                                None (+0%)
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="usageRights" value="Limited (30 days)" checked>
+                                <span class="radio-custom"></span>
+                                Limited 30 days (+20%)
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="usageRights" value="Extended (90 days)">
+                                <span class="radio-custom"></span>
+                                Extended 90 days (+35%)
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="usageRights" value="Full Rights">
+                                <span class="radio-custom"></span>
+                                Full Rights (+50%)
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Campaign Scope -->
+                    <div class="form-group">
+                        <label class="form-label" for="deliverables">Number of Deliverables</label>
+                        <input type="number" id="deliverables" class="form-control" value="1" min="1" max="50">
+                    </div>
+                </div>
+
+                <!-- Advanced Parameters (Collapsible) -->
+                <div class="section">
+                    <h2 class="section__title">
+                        <button type="button" class="collapse-toggle" data-target="advanced-params">
+                            Advanced Parameters <span class="toggle-icon">▼</span>
+                        </button>
+                    </h2>
+                    
+                    <div id="advanced-params" class="collapse-content">
+                        <!-- Geographic Market -->
+                        <div class="form-group">
+                            <label class="form-label" for="geography">Geographic Market</label>
+                            <select id="geography" class="form-control">
+                                <option value="US" selected>United States (1.0x)</option>
+                                <option value="UK">United Kingdom (0.85x)</option>
+                                <option value="EU">European Union (0.9x)</option>
+                                <option value="Global">Global (1.1x)</option>
+                                <option value="Emerging Markets">Emerging Markets (0.6x)</option>
+                            </select>
+                        </div>
+
+                        <!-- Timeline -->
+                        <div class="form-group">
+                            <label class="form-label" for="timeline">Timeline</label>
+                            <select id="timeline" class="form-control">
+                                <option value="Standard (7+ days)" selected>Standard 7+ days (1.0x)</option>
+                                <option value="Rush (48 hours)">Rush 48 hours (1.3x)</option>
+                                <option value="Emergency (24 hours)">Emergency 24 hours (1.6x)</option>
+                            </select>
+                        </div>
+
+                        <!-- Exclusivity -->
+                        <div class="form-group">
+                            <label class="form-label" for="exclusivity">Exclusivity Period</label>
+                            <select id="exclusivity" class="form-control">
+                                <option value="None" selected>None (+0%)</option>
+                                <option value="30 days">30 days (+15%)</option>
+                                <option value="90 days">90 days (+25%)</option>
+                                <option value="6 months">6 months (+40%)</option>
+                                <option value="12 months">12 months (+60%)</option>
+                            </select>
+                        </div>
+
+                        <!-- Production Complexity -->
+                        <div class="form-group">
+                            <label class="form-label" for="complexity">
+                                Production Complexity: <span id="complexityValue">Medium</span>
+                            </label>
+                            <input type="range" id="complexity" class="slider" min="1" max="5" value="3" step="1">
+                            <div class="slider-labels">
+                                <span>Simple</span>
+                                <span>Basic</span>
+                                <span>Medium</span>
+                                <span>Complex</span>
+                                <span>High-End</span>
+                            </div>
+                        </div>
+
+                        <!-- Previous Collaborations -->
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="premiumBrand">
+                                <span class="checkbox-custom"></span>
+                                Premium brand collaboration history (+10%)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="results-panel">
+                <div class="price-display">
+                    <h3>Final Quote</h3>
+                    <div class="price-main">$<span id="finalPrice">0</span></div>
+                    <div class="price-range">
+                        Range: $<span id="priceMin">0</span> - $<span id="priceMax">0</span>
+                    </div>
+                </div>
+
+                <div class="price-breakdown">
+                    <h4>Price Breakdown</h4>
+                    <div class="breakdown-item">
+                        <span>Base Price:</span>
+                        <span>$<span id="basePrice">0</span></span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Content Multiplier:</span>
+                        <span><span id="contentMult">1.0</span>x</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Engagement Multiplier:</span>
+                        <span><span id="engagementMult">1.0</span>x</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Industry Multiplier:</span>
+                        <span><span id="industryMult">1.0</span>x</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Usage Rights Premium:</span>
+                        <span>+<span id="usageRightsPct">0</span>%</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Geographic Adjustment:</span>
+                        <span><span id="geoMult">1.0</span>x</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Timeline Adjustment:</span>
+                        <span><span id="timelineMult">1.0</span>x</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span>Deliverables:</span>
+                        <span><span id="deliverablesCount">1</span>x</span>
+                    </div>
+                </div>
+
+                <div class="metrics">
+                    <h4>Key Metrics</h4>
+                    <div class="metric-item">
+                        <span>Cost per 1K followers:</span>
+                        <span>$<span id="cpm">0</span></span>
+                    </div>
+                    <div class="metric-item">
+                        <span>Platform average CPM:</span>
+                        <span>$<span id="platformCPM">0</span></span>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn btn--primary btn--full-width" id="generateQuote">Generate Quote</button>
+                    <button class="btn btn--outline btn--full-width mt-8" id="saveScenario">Save Scenario</button>
+                    <button class="btn btn--secondary btn--full-width mt-8" id="resetCalculator">Reset Calculator</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote Modal -->
+        <div id="quoteModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Generated Quote</h3>
+                    <button class="modal-close" id="closeQuote">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="quoteContent"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn--secondary" id="closeQuoteBtn">Close</button>
+                    <button class="btn btn--primary" id="copyQuote">Copy Quote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
